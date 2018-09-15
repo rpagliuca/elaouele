@@ -1,31 +1,74 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { connect } from 'react-redux';
 
-export default class extends React.Component {
-  render() {
-    return (
-      <Form>
-        <FormGroup>
-          <Label for="exampleEmail">Seu nome:</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="" />
-        </FormGroup>
-        <FormGroup tag="fieldset">
-          <Label for="exampleEmail">Seu palpite:</Label>
-            <FormGroup check>
-                <Label check>
-                    <Input type="radio" name="radio1" />{' '}
-                    Menina
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input type="radio" name="radio1" />{' '}
-                    Menino
-                </Label>
-            </FormGroup>
-        </FormGroup>
-        <Button>Palpitar</Button>
-      </Form>
-    );
-  }
+class Palpite extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nome: "",
+            palpite: ""
+        }
+    }
+    send() {
+        this.props.adicionarPalpite({
+            nome: this.state.nome,
+            palpite: this.state.palpite
+        });
+        this.setState({
+            nome: "",
+            palpite: ""
+        });
+    }
+    render(props) {
+        return (
+            <Form onSubmit={e => { this.send(); e.preventDefault(); }}>
+                <FormGroup tag="fieldset">
+                    <Label for="exampleEmail">Você acha que sou menina ou menino?</Label>
+                    <FormGroup check>
+                        <Label check>
+                            <Input
+                                name="palpite"
+                                required
+                                type="radio"
+                                value="Menina"
+                                onChange={e => this.setState({ palpite: e.target.value})}
+                                checked={this.state.palpite === 'Menina'}
+                            />
+                            {' '}
+                            Menina
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                            <Input
+                                name="palpite"
+                                type="radio"
+                                value="Menino"
+                                onChange={e => this.setState({ palpite: e.target.value})}
+                                checked={this.state.palpite === 'Menino'}
+                            />
+                            {' '}
+                            Menino
+                        </Label>
+                    </FormGroup>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="exampleEmail">Qual é seu nome?</Label>
+                    <Input required value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} />
+                </FormGroup>
+                <Button>Palpitar</Button>
+            </Form>
+        );
+    }
 }
+
+const mapStateToProps = state => { return {} };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        adicionarPalpite: data => dispatch({ type: 'ADICIONAR_PALPITE', data: data})
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Palpite);

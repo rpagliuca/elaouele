@@ -1,2 +1,27 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
+.palpite-menino {
+    background: $blue;
+    color: $white;
+}
+.palpite-menina {
+    background: $pink;
+    color: $white;
+}
+.animation-add-card-enter {
+  opacity: 0.01;
+}
+
+.animation-add-card-enter.animation-add-card-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.animation-add-card-leave {
+  opacity: 1;
+}
+
+.animation-add-card-leave.animation-add-card-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

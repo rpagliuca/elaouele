@@ -2,13 +2,11 @@ import React from 'react';
 import { Card, Button, CardImg, CardTitle, CardText, CardColumns,
  CardSubtitle, CardBody } from 'reactstrap';
 import Palpite from './palpite';
+import { connect } from 'react-redux';
+import Animation from 'react-addons-css-transition-group';
 
-export default class extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {cards: []};
-    }
-    render(props) {
+class Cards extends React.Component {
+    render() {
         return (
             <CardColumns>
                 <Card>
@@ -17,18 +15,29 @@ export default class extends React.Component {
                         <Palpite />
                     </CardBody>
                 </Card>
-                {this.state.cards.map(i => (
-                    <Card>
-                        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-                        <CardBody>
-                            <CardTitle>Card title</CardTitle>
-                            <CardSubtitle>Card subtitle</CardSubtitle>
-                            <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-                            <Button>Button</Button>
-                        </CardBody>
-                    </Card>
-                ))}
+                <Animation
+                    transitionName="animation-add-card"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                >
+                    {this.props && this.props.cards && this.props.cards.map((i, k) => (
+                        <Card key={k} className={'palpite-' + i.palpite.toLowerCase()}>
+                            <CardBody>
+                                <CardTitle>{i.nome}</CardTitle>
+                                <CardSubtitle>{i.palpite}</CardSubtitle>
+                            </CardBody>
+                        </Card>
+                    ))}
+                </Animation>
             </CardColumns>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        cards: state.cards
+    };
+};
+
+export default connect(mapStateToProps)(Cards);
