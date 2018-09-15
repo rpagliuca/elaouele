@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import "bootstrap/scss/bootstrap.scss"
-import MyJumbo from './jumbo';
+import "./css/style.scss"
+import Jumbo from './jumbo';
 import { Container } from 'reactstrap';
+import Cards from './cards';
 
 class App extends Component {
   render() {
     return (
         <Container>
-            <MyJumbo />
+            <Jumbo />
+            <Cards />
         </Container>
     );
   }
