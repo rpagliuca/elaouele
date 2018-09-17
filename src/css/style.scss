@@ -1,5 +1,8 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
+body {
+    background-image: url('../img/fundo.jpg');
+}
 .palpite-menino {
     background: $blue;
     color: $white;
@@ -26,5 +29,12 @@
     transition: opacity 300ms ease-in;
 }
 .jumbotron {
-    background: $gray-100;
+    //background: $gray-100;
+    background: #FFFFFF99;
+    border: 1px solid $gray-500;
+    margin-top: 20px;
+}
+.card-empty {
+    background: #FFFFFF99;
+    border: 1px solid $gray-500;
 }

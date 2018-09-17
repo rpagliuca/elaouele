@@ -18,7 +18,8 @@ class Palpite extends React.Component {
         this.props.setPalpitarFormRef(this.myRef);
         this.state = {
             nome: "",
-            palpite: ""
+            palpite: "",
+            recado: ""
         }
         db.collection('palpites').orderBy("created", "desc")
             .onSnapshot(function(querySnapshot) {
@@ -28,11 +29,13 @@ class Palpite extends React.Component {
     send() {
         this.props.adicionarPalpite(db, {
             nome: this.state.nome,
-            palpite: this.state.palpite
+            palpite: this.state.palpite,
+            recado: this.state.recado
         });
         this.setState({
             nome: "",
-            palpite: ""
+            palpite: "",
+            recado: ""
         });
     }
     render(props) {
@@ -71,6 +74,10 @@ class Palpite extends React.Component {
                 <FormGroup>
                     <Label for="exampleEmail">Qual é seu nome?</Label>
                     <Input ref={this.myRef} required value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="">Deixe um recadinho!</Label>
+                    <Input value={this.state.recado} onChange={e => this.setState({ recado: e.target.value })} />
                 </FormGroup>
                 <Button>Enviar palpite</Button>
             </Form>

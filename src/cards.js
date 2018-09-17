@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardTitle, CardColumns,
+import { Card, CardTitle, CardColumns, CardText,
  CardSubtitle, CardBody } from 'reactstrap';
 import Palpite from './palpite';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ class Cards extends React.Component {
     render() {
         return (
             <CardColumns>
-                <Card>
+                <Card className="card-empty">
                     <CardBody>
                         <CardTitle>Palpite</CardTitle>
                         <Palpite setPalpitarFormRef={this.props.setPalpitarFormRef} />
@@ -26,7 +26,7 @@ class Cards extends React.Component {
                             <Card key={k} className={'palpite-' + i.palpite.toLowerCase()}>
                                 <CardBody>
                                     <CardTitle>{i.nome}</CardTitle>
-                                    <CardSubtitle>{i.palpite}</CardSubtitle>
+                                    <CardText>{i.recado}</CardText>
                                 </CardBody>
                             </Card>
                         ))) || (this.props.isReady && (
