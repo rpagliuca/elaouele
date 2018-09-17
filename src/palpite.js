@@ -1,6 +1,12 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
+import firebase from './Firestore';
+
+const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots: true
+});
 
 class Palpite extends React.Component {
     constructor(props) {
@@ -9,8 +15,23 @@ class Palpite extends React.Component {
             nome: "",
             palpite: ""
         }
+
+        db.collection('palpites') // .where("state", "==", "CA")
+            .onSnapshot(function(querySnapshot) {
+                var cities = [];
+                querySnapshot.forEach(function(doc) {
+                    cities.push(doc.data());
+                });
+                console.log("Current cities in CA: ", cities.join(", "));
+
+            });
+
     }
     send() {
+        db.collection('palpites').add({
+            nome: this.state.nome,
+            palpite: this.state.palpite
+        });  
         this.props.adicionarPalpite({
             nome: this.state.nome,
             palpite: this.state.palpite

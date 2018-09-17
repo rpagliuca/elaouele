@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, CardImg, CardTitle, CardText, CardColumns,
+import { Card, CardTitle, CardColumns,
  CardSubtitle, CardBody } from 'reactstrap';
 import Palpite from './palpite';
 import { connect } from 'react-redux';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import { Jumbotron, Row, Col } from 'reactstrap';
 import Charts from './charts';
 
 export default (props) => {
