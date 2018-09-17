@@ -76,7 +76,7 @@ class Palpite extends React.Component {
                     <Input ref={this.myRef} required value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="">Deixe um recadinho!</Label>
+                    <Label for="">Deixe um recadinho! <small>(opcional)</small></Label>
                     <Input value={this.state.recado} onChange={e => this.setState({ recado: e.target.value })} />
                 </FormGroup>
                 <Button>Enviar palpite</Button>
