@@ -5,6 +5,10 @@ import Palpite from './palpite';
 import { connect } from 'react-redux';
 import Animation from 'react-addons-css-transition-group';
 import Loadable from 'react-loading-overlay';
+import Emoji from 'react-twemoji';
+
+const EMOJI_OPTIONS = {
+}
 
 class Cards extends React.Component {
     render() {
@@ -23,10 +27,10 @@ class Cards extends React.Component {
                 >
                     <Loadable background="#FFFFFFDD" color="#777777" active={!this.props.isReady} spinner text="Carregando palpites...">
                         {(this.props && this.props.cards.length && this.props.cards.map((i, k) => (
-                            <Card key={k} className={'palpite-' + i.palpite.toLowerCase()}>
+                            <Card key={k} className={'card-palpite palpite-' + i.palpite.toLowerCase()}>
                                 <CardBody>
-                                    <CardTitle>{i.nome}</CardTitle>
-                                    <CardText>{i.recado}</CardText>
+                                    <Emoji options={EMOJI_OPTIONS}><CardTitle>{i.nome}</CardTitle></Emoji>
+                                    <Emoji options={EMOJI_OPTIONS}><CardText>{i.recado}</CardText></Emoji>
                                 </CardBody>
                             </Card>
                         ))) || (this.props.isReady && (
