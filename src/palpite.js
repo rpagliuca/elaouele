@@ -18,7 +18,7 @@ class Palpite extends React.Component {
             nome: "",
             palpite: ""
         }
-        db.collection('palpites')
+        db.collection('palpites').orderBy("created", "desc")
             .onSnapshot(function(querySnapshot) {
                 props.fetchPalpites(db, querySnapshot);
             });

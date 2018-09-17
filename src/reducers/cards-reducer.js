@@ -3,7 +3,7 @@ export default (state = [], action) => {
         case 'ADICIONAR_PALPITE':
             const newCard = action.data;
             const newCards = state.map(i => i);
-            newCards.push(newCard);
+            newCards.unshift(newCard);
             return newCards;
         case 'FETCH_PALPITES':
             return action.data.docs.map(d => d.data());
