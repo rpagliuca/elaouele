@@ -2,8 +2,11 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import firebase from './Firestore';
+import adicionarPalpite from './actions/adicionar-palpite';
+import fetchPalpites from './actions/fetch-palpites';
 
 const db = firebase.firestore();
+
 db.settings({
     timestampsInSnapshots: true
 });
@@ -15,24 +18,13 @@ class Palpite extends React.Component {
             nome: "",
             palpite: ""
         }
-
-        db.collection('palpites') // .where("state", "==", "CA")
+        db.collection('palpites')
             .onSnapshot(function(querySnapshot) {
-                var cities = [];
-                querySnapshot.forEach(function(doc) {
-                    cities.push(doc.data());
-                });
-                console.log("Current cities in CA: ", cities.join(", "));
-
+                props.fetchPalpites(db, querySnapshot);
             });
-
     }
     send() {
-        db.collection('palpites').add({
-            nome: this.state.nome,
-            palpite: this.state.palpite
-        });  
-        this.props.adicionarPalpite({
+        this.props.adicionarPalpite(db, {
             nome: this.state.nome,
             palpite: this.state.palpite
         });
@@ -88,7 +80,8 @@ const mapStateToProps = state => { return {} };
 
 const mapDispatchToProps = dispatch => {
     return {
-        adicionarPalpite: data => dispatch({ type: 'ADICIONAR_PALPITE', data: data})
+        adicionarPalpite: (db, data) => adicionarPalpite(dispatch, db, data),
+        fetchPalpites: (db, data) => fetchPalpites(dispatch, db, data)
     };
 }
 
