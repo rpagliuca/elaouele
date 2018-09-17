@@ -13,7 +13,7 @@ class Cards extends React.Component {
                 <Card>
                     <CardBody>
                         <CardTitle>Palpite</CardTitle>
-                        <Palpite />
+                        <Palpite setPalpitarFormRef={this.props.setPalpitarFormRef} />
                     </CardBody>
                 </Card>
                 <Animation

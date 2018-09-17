@@ -5,14 +5,25 @@ import { Container } from 'reactstrap';
 import Cards from './cards';
 
 class App extends Component {
-  render() {
-    return (
-        <Container>
-            <Jumbo />
-            <Cards />
-        </Container>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            palpitarFormRef: null
+        };
+    }
+    setPalpitarFormRef = ref => {
+        this.setState({
+            palpitarFormRef: ref
+        });
+    }
+    render() {
+        return (
+            <Container>
+                <Jumbo palpitarFormRef={this.state.palpitarFormRef} />
+                <Cards setPalpitarFormRef={this.setPalpitarFormRef} />
+            </Container>
+        );
+    }
 }
 
 export default App;

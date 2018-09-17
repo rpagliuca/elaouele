@@ -14,6 +14,8 @@ db.settings({
 class Palpite extends React.Component {
     constructor(props) {
         super(props);
+        this.myRef = React.createRef();
+        this.props.setPalpitarFormRef(this.myRef);
         this.state = {
             nome: "",
             palpite: ""
@@ -35,7 +37,7 @@ class Palpite extends React.Component {
     }
     render(props) {
         return (
-            <Form onSubmit={e => { this.send(); e.preventDefault(); }}>
+            <Form className="form-palpite" onSubmit={e => { this.send(); e.preventDefault(); }}>
                 <FormGroup tag="fieldset">
                     <Label for="exampleEmail">Você acha que sou menina ou menino?</Label>
                     <FormGroup check>
@@ -68,9 +70,9 @@ class Palpite extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="exampleEmail">Qual é seu nome?</Label>
-                    <Input required value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} />
+                    <Input ref={this.myRef} required value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} />
                 </FormGroup>
-                <Button>Palpitar</Button>
+                <Button>Enviar palpite</Button>
             </Form>
         );
     }

@@ -1,21 +1,33 @@
 import React from 'react';
-import { Jumbotron, Row, Col } from 'reactstrap';
+import ReactDOM from 'react-dom';
+import { Jumbotron, Row, Col, Button } from 'reactstrap';
 import Charts from './charts';
 
-export default (props) => {
-    return (
-        <div>
-            <Jumbotron>
-                <Row>
-                    <Col md="6">
-                        <h1 className="display-3">Olá, mundo!</h1>
-                        <p className="lead">Logo vocês saberão se sou menina ou menino.</p>
-                    </Col>
-                    <Col md="6" className="align-self-center justify-content-center">
-                        <Charts />
-                    </Col>
-                </Row>
-            </Jumbotron>
-        </div>
-    );
+export default class Jumbo extends React.Component{
+    handleClick = e => {
+        if (this.props.palpitarFormRef) {
+            console.log(this.props.palpitarFormRef);
+            const domNode = ReactDOM.findDOMNode(this.props.palpitarFormRef.current);
+            domNode.scrollIntoView();
+            domNode.focus();
+        }
+    }
+    render() {
+        return (
+            <div>
+                <Jumbotron>
+                    <Row>
+                        <Col md="6">
+                            <h1 className="display-3">Olá, mundo!</h1>
+                            <p className="lead">Logo vocês saberão se sou menina ou menino.</p>
+                            <Button outline size="lg" onClick={this.handleClick}>Palpitar</Button>
+                        </Col>
+                        <Col md="6" className="align-self-center justify-content-center">
+                            <Charts />
+                        </Col>
+                    </Row>
+                </Jumbotron>
+            </div>
+        );
+    }
 };
