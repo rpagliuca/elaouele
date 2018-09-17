@@ -18,7 +18,7 @@ class MyPie extends React.Component {
                 label: i,
                 color: color
             };
-        });
+        }).sort((a, b) => a.label < b.label);
         const options = {
             responsive: true
         };

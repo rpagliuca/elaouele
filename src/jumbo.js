@@ -20,7 +20,7 @@ export default class Jumbo extends React.Component{
                     <Row>
                         <Col md="6">
                             <h1 className="display-3">Olá, mundo!</h1>
-                            <p><img src={chupeta} /></p>
+                            <p><img src={chupeta} alt="" /></p>
                             <p className="lead">Logo vocês saberão se sou menina ou menino.</p>
                             <Button outline size="lg" onClick={this.handleClick}>Palpitar</Button>
                         </Col>
