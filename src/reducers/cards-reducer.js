@@ -7,9 +7,7 @@ export default (state = [], action) => {
             return newCards;
         case 'FETCH_PALPITES':
             return action.data.docs.map(d => d.data());
-            break;
         default:
             return state;
-            break;
     }
 }

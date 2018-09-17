@@ -1,12 +1,12 @@
-export default (state = [], action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case 'ADICIONAR_PALPITE':
             return {
-                state: 'loading'
+                isReady: false
             };
         case 'FETCH_PALPITES':
             return {
-                state: 'ready'
+                isReady: true
             };
         default:
             return state;
