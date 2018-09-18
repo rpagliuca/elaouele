@@ -3,6 +3,15 @@ import "./css/style.scss"
 import Jumbo from './jumbo';
 import { Container } from 'reactstrap';
 import Cards from './cards';
+import { connect } from 'react-redux';
+import firebase from './Firestore';
+import fetchedConfig from './actions/fetched-config';
+
+const db = firebase.firestore();
+
+db.settings({
+    timestampsInSnapshots: true
+});
 
 class App extends Component {
     constructor(props) {
@@ -10,6 +19,10 @@ class App extends Component {
         this.state = {
             palpitarFormRef: null
         };
+        db.collection('config')
+            .onSnapshot(function(querySnapshot) {
+                props.fetchedConfig(querySnapshot);
+            });
     }
     setPalpitarFormRef = ref => {
         this.setState({
@@ -26,4 +39,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchedConfig: (data) => fetchedConfig(dispatch, data)
+    }
+};
+
+export default connect(null, mapDispatchToProps)(App);

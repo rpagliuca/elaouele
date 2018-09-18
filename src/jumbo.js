@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { Jumbotron, Row, Col, Button } from 'reactstrap';
 import Charts from './charts';
 import chupeta from './img/chupeta.png';
+import { connect } from 'react-redux';
 
-export default class Jumbo extends React.Component{
+class Jumbo extends React.Component{
     handleClick = e => {
         if (this.props.palpitarFormRef) {
             console.log(this.props.palpitarFormRef);
@@ -16,13 +17,19 @@ export default class Jumbo extends React.Component{
     render() {
         return (
             <div>
-                <Jumbotron>
+                <Jumbotron className={"jumbo-resultado-" + this.props.sexo}>
                     <Row>
                         <Col md="6">
-                            <h1 className="display-3">Olá, mundo!</h1>
+                            <h1 className="display-3">
+                                {!this.props.sexo && "Olá, mundo!"}
+                                {this.props.sexo === 'menino' && "Sou menino!"}
+                                {this.props.sexo === 'menina' && "Sou menina!"}
+                            </h1>
                             <p><img src={chupeta} alt="" /></p>
-                            <p className="lead">Logo vocês saberão se sou menina ou menino.</p>
-                            <Button outline size="lg" onClick={this.handleClick}>Palpitar</Button>
+                            <p className="lead">
+                                {!this.props.sexo && "Logo vocês saberão se sou menina ou menino."}
+                            </p>
+                            {!this.props.sexo && <Button outline size="lg" onClick={this.handleClick}>Palpitar</Button>}
                         </Col>
                         <Col md="6" className="align-self-center justify-content-center">
                             <Charts />
@@ -33,3 +40,11 @@ export default class Jumbo extends React.Component{
         );
     }
 };
+
+const mapStateToProps = state => {
+    return {
+        sexo: state.config.sexo
+    }
+};
+
+export default connect(mapStateToProps)(Jumbo);

@@ -85,8 +85,6 @@ class Palpite extends React.Component {
     }
 }
 
-const mapStateToProps = state => { return {} };
-
 const mapDispatchToProps = dispatch => {
     return {
         adicionarPalpite: (db, data) => adicionarPalpite(dispatch, db, data),
@@ -94,4 +92,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Palpite);
+export default connect(null, mapDispatchToProps)(Palpite);

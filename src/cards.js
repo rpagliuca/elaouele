@@ -21,7 +21,12 @@ class Cards extends React.Component {
                 <Card className="card-empty">
                     <CardBody>
                         <CardTitle>Palpite</CardTitle>
-                        <Palpite setPalpitarFormRef={this.props.setPalpitarFormRef} />
+                        {!this.props.sexo && (
+                            <Palpite setPalpitarFormRef={this.props.setPalpitarFormRef} />
+                        )}
+                        {this.props.sexo && (
+                            <CardText>Palpites encerrados.</CardText>
+                        )}
                     </CardBody>
                 </Card>
                 <Animation
@@ -55,7 +60,8 @@ class Cards extends React.Component {
 const mapStateToProps = state => {
     return {
         cards: state.cards,
-        isReady: state.uiCards.isReady
+        isReady: state.uiCards.isReady,
+        sexo: state.config.sexo
     };
 };
 
