@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Animation from 'react-addons-css-transition-group';
 import Loadable from 'react-loading-overlay';
 import Emoji from 'react-twemoji';
+import YoutubeVideo from './youtube-video';
 
 const EMOJI_OPTIONS = {
 }
@@ -14,6 +15,9 @@ class Cards extends React.Component {
     render() {
         return (
             <CardColumns>
+                <Card className="card-empty">
+                    <YoutubeVideo />
+                </Card>
                 <Card className="card-empty">
                     <CardBody>
                         <CardTitle>Palpite</CardTitle>
