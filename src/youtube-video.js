@@ -10,7 +10,7 @@ class YoutubeVideo extends React.Component {
                 {!this.props.youtubeUrl && (
                     <CardBody>
                         <CardTitle>Live em breve!</CardTitle>
-                        <CardText>A transmissão do Chá Revelação comerá mais tarde</CardText>
+                        <CardText>A transmissão do Chá Revelação começará mais tarde</CardText>
                     </CardBody>
                 )}
 
