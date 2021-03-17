@@ -43,7 +43,7 @@
     "react": "^16.5.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-chartjs": "^1.2.0",
-    "react-dev-utils": "^5.0.2",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.5.1",
     "react-loading-overlay": "^0.3.0",
     "react-redux": "^5.0.7",
